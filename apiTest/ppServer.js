@@ -44,11 +44,11 @@ app.get("/", function sponBills(req, res) {
       console.log(err);
     });
   console.log(req.body);
-  res.send("Hello world");
+ // res.send("Hello world");
 });
 
 // Cosponsored route (20 bills most recently co-sponsored by a single member. Also a Marauder's Map message)
-app.get("/cosponsored", function(req, res) {
+app.get("/cosponsored", function coSponBills(req, res) {
   axios
     .get("https://api.propublica.org/congress/v1/members/W000817/bills/cosponsored.json", {
       headers: { "X-API-Key": "4N6ilo6LCdb7Gjmfg050VPVRB3tz10mpR5oAlNn2" }
