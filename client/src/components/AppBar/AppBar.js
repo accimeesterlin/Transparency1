@@ -1,10 +1,10 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
+import Dialog, { DialogTitle } from 'material-ui/Dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import SignInModal from '../SignInModal';
-
-
+import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
   labelStyle: {
@@ -22,23 +22,40 @@ const muiTheme = getMuiTheme({
   }
 });
 
-/**
- * This example uses an [IconButton](/#/components/icon-button) on the left, has a clickable `title`
- * through the `onClick` property, and a [FlatButton](/#/components/flat-button) on the right.
- */
-const AppBarExample = () => (
-  <MuiThemeProvider muiTheme={muiTheme}>  
-  <AppBar
-    showMenuIconButton={false}
-    title={<span style={styles.title}>Transparency</span>}
-    titleStyle={{ fontFamily: 'EB Garamond' , fontSize: 50}}  
-    iconElementRight={ 
-     <SignInModal 
-      label="Sign In"/>}
-      
-  />
- 
-  </MuiThemeProvider>
-);
 
-export default AppBarExample;
+export default class AppBarExample extends React.Component {
+  state = {
+    open: false,
+  };
+  
+
+  render(){
+
+    const handleOpen = () => {
+      this.setState(
+        {open: true},
+        );
+    };
+
+    const handleClose = () => {
+      this.setState({open: false});
+    };
+
+    return  (
+      <MuiThemeProvider muiTheme={muiTheme}>  
+      <AppBar
+        showMenuIconButton={false}
+        title={<span style={styles.title}>Transparency</span>}
+        titleStyle={{ fontFamily: 'EB Garamond' , fontSize: 50}}  
+        iconElementRight={ 
+          <FlatButton 
+            label={"Sign In"}
+            onClick={this.handleOpen}/>}
+          />
+          <SignInModal
+            modal={false}
+            open={this.handleOpen} />
+      </MuiThemeProvider>
+    );
+  }
+}

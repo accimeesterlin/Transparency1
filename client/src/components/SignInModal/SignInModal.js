@@ -4,7 +4,7 @@ import FlatButton from "material-ui/FlatButton";
 import TextFieldSignin from "../TextFieldSimple";
 import TextFieldRegister from "../RegisterModal/TextFieldRegister";
 import API from "../../utils/API";
-import axios from "axios";
+
 
 export default class SignInModal extends Component {
   state = {
@@ -99,7 +99,7 @@ export default class SignInModal extends Component {
 
     return (
       <div className="container-fluid">
-        <FlatButton onClick={this.handleOpen} label="Sign In" />
+        
         <Dialog
           title={isLoggedIn ? "Sign in" : "Sign up"}
           actions={actions}
