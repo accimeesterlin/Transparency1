@@ -26,8 +26,36 @@ const muiTheme = getMuiTheme({
 export default class AppBarExample extends React.Component {
   state = {
     open: false,
+    isLoggedIn: true
   };
-  
+
+
+  handleOpen = () => { this.setState({ open: true }); }
+
+  handleClose = () => { this.setState({ open: false }); }
+
+  signUp = () => {
+    // TODO
+    // Register
+    // Signin
+
+    this.setState({
+      isLoggedIn: false
+    });
+
+    // isLoggedIn
+    // true = Login
+    // false = Register
+  };
+
+  signIn = () => {
+    // TODO
+    // UI Sign in
+    this.setState({
+      isLoggedIn: true
+    });
+  };
+
 
   render(){
 
@@ -41,6 +69,8 @@ export default class AppBarExample extends React.Component {
       this.setState({open: false});
     };
 
+    const username = "accimeesterlin"; // from the api
+
     return  (
       <MuiThemeProvider muiTheme={muiTheme}>  
       <AppBar
@@ -49,13 +79,52 @@ export default class AppBarExample extends React.Component {
         titleStyle={{ fontFamily: 'EB Garamond' , fontSize: 50}}  
         iconElementRight={ 
           <FlatButton 
-            label={"Sign In"}
+            label={username ? username : "Sign In"}
             onClick={this.handleOpen}/>}
           />
           <SignInModal
-            modal={false}
-            open={this.handleOpen} />
+            {...this.state}
+            handleOpen = {this.handleOpen}
+            handleClose = {this.handleClose}
+            signUp = {this.signUp}
+            signIn = {this.signIn}
+            />
       </MuiThemeProvider>
     );
   }
 }
+
+
+
+
+// // 3 differents components
+
+  // // #1 Functional Component
+  //   const Header = () => {
+      
+  //     // NO State
+  //     // No functions
+  //     // No Ajax
+
+  //   };
+
+  // // #2 Class Component
+  // class MainApp extends React.Component{
+    
+  //   // TODO
+
+  //   render(){
+
+  //     return(
+  //       <div>
+  //         <Header />
+  //       </div>
+  //     );
+  //   }
+  // }
+
+  // // #3 Higher Order Component (Advanced)
+
+  // const MainClassComponent = () => class SubComponent extends React.Component{
+  //   // TODO
+  // };

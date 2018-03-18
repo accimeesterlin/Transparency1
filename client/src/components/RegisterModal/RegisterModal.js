@@ -19,6 +19,18 @@ export default class RegisterModal extends Component {
 
   handleClose = ()=> {this.setState({open:false});}
 
+  inputChange = (event) => {
+      // TODO
+        const name = event.target.name;
+        const value = event.target.value;
+
+        console.log("Name: ", name);
+        console.log("Value: ", value);
+        
+
+        this.setState({[name]: value});
+  };
+
   render() {
     const styles = {
       labelStyle: {
@@ -52,7 +64,7 @@ export default class RegisterModal extends Component {
                   onRequestClose={this.handleClose}
                   >
                <p>Already have an account? <FlatButton onClick={this.handleClosed} label="Sign In" /> </p>   
-             <TextFieldRegister />
+             <TextFieldRegister inputChange = {this.inputChange} />
                  
               </Dialog>
           </div>
